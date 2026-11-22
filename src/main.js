@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { FilesetResolver, HandLandmarker } from '@mediapipe/tasks-vision'
-import { drawCardFace, getDeckMeaning } from './deck.js'
+import { getDeckMeaning } from './deck.js'
 import './style.css'
 
 const MAX_DRAWS = 3
@@ -86,11 +86,12 @@ async function init() {
   setStatus('正在加载塔罗牌')
   const response = await fetch('/cards.json')
   const data = await response.json()
-  backTexture = textureLoader.load(drawCardFace())
-  state.cards = data.cards.map((card) => {
-    const entry = { ...card, displayName: card.name.replace(/^\d+_/, ''), orientation: null }
-    return { ...entry, front: drawCardFace(entry) }
-  })
+  backTexture = textureLoader.load(data.back)
+  state.cards = data.cards.map((card) => ({
+    ...card,
+    displayName: card.name.replace(/^\d+_/, ''),
+    orientation: null,
+  }))
 
   slots = createSlots()
   selector = createSelector()

@@ -30,4 +30,8 @@ npm run dev
 
 ## 素材
 
-公开版包含 78 张程序生成的几何牌面和简版中文正逆位提示。WebAssembly 文件在开发和构建前从 npm 安装的 MediaPipe 依赖生成到本地资源目录。
+公开版包含原项目的 78 张牌图和牌背。图片保存在 [public/cards](public/cards)，以网页适用的 JPEG 或 PNG 发布，牌名与图片的对应关系见 [牌组索引](public/cards.json)。解读使用项目内置的简版中文正逆位提示。
+
+<img src="public/cards/back.jpg" alt="塔罗牌牌背" width="126"> <img src="public/cards/00.jpg" alt="愚人" width="126"> <img src="public/cards/01.jpg" alt="魔术师" width="126"> <img src="public/cards/02.jpg" alt="女祭司" width="126">
+
+WebAssembly 文件在开发和构建前从 npm 安装的 MediaPipe 依赖生成到本地资源目录。
