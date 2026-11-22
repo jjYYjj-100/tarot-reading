@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tarot</title>
+</head>
+<body>
+  <main id="app">
+    <section class="control-panel" aria-label="占卜控制">
+      <div class="brand">
+        <span>AI Tarot</span>
+        <strong>塔罗抽牌</strong>
+      </div>
+
+      <label class="question-field">
+        <span>你的问题</span>
+        <textarea id="question" rows="3" placeholder="把此刻最想询问的问题写下来"></textarea>
+      </label>
+
+      <div class="actions">
+        <button id="start" type="button">开始占卜</button>
+        <button id="reset" type="button" class="secondary">重置</button>
+      </div>
+
+      <div class="gesture-pad" aria-label="手势控制">
+        <button id="openHand" type="button">张手</button>
+        <button id="fist" type="button">握拳</button>
+      </div>
+
+      <div class="camera-panel" aria-label="摄像头手势识别">
+        <div class="camera-head">
+          <span>手势识别</span>
+          <button id="toggleGesture" type="button" class="secondary">开启摄像头</button>
+        </div>
+        <video id="gestureVideo" autoplay playsinline muted></video>
+        <p id="gestureStatus" class="gesture-status">识别 5 指为张手，0 指为握拳</p>
+      </div>
+
+      <details class="ai-settings">
+        <summary>AI 解读设置（可选）</summary>
+        <form id="aiSettingsForm">
+          <label class="question-field">
+            <span>自己的 DeepSeek API 密钥</span>
+            <input id="aiKey" type="password" autocomplete="off" spellcheck="false" maxlength="512">
+          </label>
+          <div class="actions">
+            <button type="submit">启用 AI</button>
+            <button id="clearAiKey" type="button" class="secondary">清除密钥</button>
+          </div>
+        </form>
+        <p class="hint" id="aiStatus" role="status">默认使用本地解读。启用 AI 后，问题和牌义会发送给 DeepSeek。</p>
+      </details>
+
+      <p id="status" class="status">输入问题后开始占卜</p>
+      <p class="hint">快捷键：空格张手，回车握拳</p>
+    </section>
+
+    <section class="reading-panel" aria-label="抽牌结果">
+      <div class="selected-list">
+        <div class="section-title">
+          <span>已选择</span>
+          <strong id="count">0 / 3</strong>
+        </div>
+        <div id="selectedCards" class="selected-cards"></div>
+      </div>
+
+      <article id="reading" class="reading">
+        <h2>等待抽牌</h2>
+        <p>开始后，张手让牌流动，握拳锁定中心牌。</p>
+      </article>
+    </section>
+  </main>
+
+  <div id="stage" aria-label="塔罗牌轮播舞台"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
